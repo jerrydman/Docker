@@ -1,0 +1,13 @@
+FROM registry.access.redhat.com/ubi9-init
+RUN yum install unzip -y
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+RUN unzip awscliv2.zip
+RUN ./aws/install
+
+#Install Heroku CLI
+RUN curl https://cli-assets.heroku.com/install.sh -o install.sh | sh
+
+#Install latest terraform
+RUN  yum install -y yum-utils
+RUN  yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+RUN  yum -y install terraform
